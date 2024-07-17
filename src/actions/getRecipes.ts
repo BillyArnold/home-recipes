@@ -6,7 +6,8 @@ const getRecipes = async (): Promise<RecipeResponse> => {
         headers: {
             "Content-Type": "application/json",
             "Authorization": `Bearer ${process.env.API_BEARER}`
-        }
+        },
+        cache: 'no-cache'
     });
 
     const data = await res.json();

@@ -1,6 +1,5 @@
 import getRecipes from "@/actions/getRecipes"
-import Image from "next/image";
-import RecipeCard from "./RecipeCard";
+import RecipeCard from "./ui/RecipeCard";
 
 export default async function RecipeListing() {
     const recipes = await getRecipes();
