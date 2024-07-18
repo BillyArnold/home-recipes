@@ -1,11 +1,20 @@
 import RecipeListing from "@/components/RecipeListing";
+import RecipeSearch from "@/components/RecipeSearch";
 import PageTitle from "@/components/ui/PageTitle";
 
-export default function Home() {
+interface HomeProps {
+  searchParams: URLSearchParams
+}
+
+export default function Home({ searchParams }: HomeProps) {
   return (
     <main className="">
       <PageTitle title="Recipes"/>
-      <RecipeListing />
+
+      <RecipeSearch />
+      <div className="mb-4"></div>
+
+      <RecipeListing searchParams={searchParams} />
     </main>
   );
 }
