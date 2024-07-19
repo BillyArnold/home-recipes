@@ -1,6 +1,6 @@
 'use server';
 
-import { revalidateTag } from "next/cache";
+import { revalidatePath, revalidateTag } from "next/cache";
 
 export const revalidateRecipeSearch = () => {
     revalidateTag('recipeCollection')

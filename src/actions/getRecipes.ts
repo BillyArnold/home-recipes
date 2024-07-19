@@ -1,6 +1,6 @@
 import { RecipeResponse } from "@/types";
 
-const getRecipes = async (searchTerm = null): Promise<RecipeResponse> => {
+const getRecipes = async (searchTerm: string | null = null): Promise<RecipeResponse> => {
     let searchUrl = `${process.env.API_DOMAIN}recipes?populate=*`;
     if (searchTerm) {
         searchUrl = `${process.env.API_DOMAIN}recipes?populate=*&filters[Title][$contains]=${searchTerm}`;

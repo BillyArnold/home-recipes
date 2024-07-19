@@ -4,8 +4,7 @@ import { useCallback, useState } from "react"
 import { usePathname, useRouter } from "next/navigation";
 import { useSearchParams } from "next/navigation";
 import { revalidateRecipeSearch } from "@/actions/revalidateRecipeSearch";
-
-export const SEARCH_ID = 's';
+import { revalidatePath } from "next/cache";
 
 export default function RecipeSearch() {
     const [searchVal, setSearchVal] = useState<string>("");
@@ -26,10 +25,8 @@ export default function RecipeSearch() {
     const handleSearch = async (e: React.FormEvent) => {
         e.preventDefault();
 
-        if(searchVal) {
-            router.push(pathname + '?' + createQueryString(SEARCH_ID, searchVal))
-            revalidateRecipeSearch();
-        }
+        revalidateRecipeSearch();
+        router.push(pathname + '?' + createQueryString('s', searchVal))
     };
 
     return (

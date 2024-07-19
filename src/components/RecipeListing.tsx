@@ -1,20 +1,17 @@
 import getRecipes from "@/actions/getRecipes"
 import RecipeCard from "./ui/RecipeCard";
-import { SEARCH_ID } from "./RecipeSearch";
+import { RecipeResponse } from "@/types";
 
 interface RecipeListingProps {
-    searchParams: URLSearchParams | any
+    recipes: RecipeResponse
 }
 
-export default async function RecipeListing({ searchParams }: RecipeListingProps) {
-    console.log(searchParams, Object.entries(searchParams))
-    for (let key in Object.keys(searchParams)) {
-        console.log('key', key)
-        if (SEARCH_ID === key){
-            console.log('found', searchParams[key]);
-        }
+export default async function RecipeListing({ recipes }: RecipeListingProps) {
+    if (recipes.data.length === 0) {
+        return (
+            <div>No Recipes Found...</div>
+        )
     }
-    const recipes = await getRecipes();
     return (
         <ul className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-4 grid-auto-flow">
              {
