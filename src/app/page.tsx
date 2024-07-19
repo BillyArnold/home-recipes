@@ -16,7 +16,7 @@ export default async function Home({ searchParams }: HomeProps) {
     <main className="">
       <PageTitle title="Recipes"/>
 
-      <RecipeSearch />
+      <RecipeSearch startValue={searchParams.s} />
       <div className="mb-4"></div>
 
       <RecipeListing recipes={recipes} />

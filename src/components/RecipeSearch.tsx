@@ -3,11 +3,14 @@
 import { useCallback, useState } from "react"
 import { usePathname, useRouter } from "next/navigation";
 import { useSearchParams } from "next/navigation";
-import { revalidateRecipeSearch } from "@/actions/revalidateRecipeSearch";
 import { revalidatePath } from "next/cache";
 
-export default function RecipeSearch() {
-    const [searchVal, setSearchVal] = useState<string>("");
+interface RecipeSearchProps {
+    startValue: string
+}
+
+export default function RecipeSearch({ startValue } : RecipeSearchProps) {
+    const [searchVal, setSearchVal] = useState<string>(startValue);
     const router = useRouter();
     const pathname = usePathname()
     const searchParams = useSearchParams()
@@ -25,7 +28,6 @@ export default function RecipeSearch() {
     const handleSearch = async (e: React.FormEvent) => {
         e.preventDefault();
 
-        revalidateRecipeSearch();
         router.push(pathname + '?' + createQueryString('s', searchVal))
     };
 
