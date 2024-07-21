@@ -6,11 +6,11 @@ import { useSearchParams } from "next/navigation";
 import { revalidatePath } from "next/cache";
 
 interface RecipeSearchProps {
-    startValue: string
+    startValue: string | null
 }
 
 export default function RecipeSearch({ startValue } : RecipeSearchProps) {
-    const [searchVal, setSearchVal] = useState<string>(startValue);
+    const [searchVal, setSearchVal] = useState<string>(startValue || "");
     const router = useRouter();
     const pathname = usePathname()
     const searchParams = useSearchParams()
@@ -27,8 +27,9 @@ export default function RecipeSearch({ startValue } : RecipeSearchProps) {
 
     const handleSearch = async (e: React.FormEvent) => {
         e.preventDefault();
-
-        router.push(pathname + '?' + createQueryString('s', searchVal))
+        if (searchVal){
+            router.push(pathname + '?' + createQueryString('s', searchVal))
+        }
     };
 
     return (
