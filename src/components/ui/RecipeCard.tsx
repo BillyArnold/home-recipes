@@ -9,7 +9,7 @@ interface RecipeCardProps {
 export default function RecipeCard({ recipe }: RecipeCardProps) {
     return (
         <article className="rounded-md overflow-hidden shadow-lg w-full bg-white h-full">
-            <Image alt="Food image" width={recipe.attributes.FeaturedImage.data.attributes.width} height={recipe.attributes.FeaturedImage.data.attributes.height} src={`${process.env.MEDIA_URL}${recipe.attributes.FeaturedImage.data.attributes.formats.large.url}`} />
+            <Image className="h-60 object-cover" alt="Food image" width={recipe.attributes.FeaturedImage.data.attributes.width} height={recipe.attributes.FeaturedImage.data.attributes.height} src={`${process.env.MEDIA_URL}${recipe.attributes.FeaturedImage.data.attributes.formats.large.url}`} />
             <div className="px-6 py-4">
                 <Link href={`/recipe/${recipe.attributes.slug}`}>
                     <div className="font-bold text-xl mb-2">{recipe.attributes.Title}</div>
